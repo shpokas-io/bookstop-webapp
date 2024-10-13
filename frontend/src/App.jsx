@@ -1,9 +1,25 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./App.css";
 
 function App() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5063/api/book")
+      .then((res) => setBooks(res.data))
+      .catch((error) => console.error("Error fetching books:", error));
+  }, []);
+
   return (
-    <div className="text-center bg-blue-500 p-4 text-red">
-      <p className="text-red-50 p-10 text-3xl ">Hello</p>
+    <div>
+      <h1>Books</h1>
+      <ul>
+        {books.map((book) => (
+          <li key={book.id}>{book.title}</li>
+        ))}
+      </ul>
     </div>
   );
 }
