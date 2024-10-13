@@ -1,3 +1,4 @@
+using bookstopAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseAuthorization();
     app.MapControllers();
 }
-
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 
 app.Run();
