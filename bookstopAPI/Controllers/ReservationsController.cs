@@ -18,6 +18,12 @@ public class ReservationsController : ControllerBase
   [HttpPost]
   public async Task<ActionResult<Reservation>> CreateReservation(Reservation reservation)
   {
-    //LOgic to calculate the total reservation cost
+    //Logic to calculate the total reservation cost
+    var book = await _context.Books.FindAsync(reservation.BookId);
+    IFileHttpResult(Book == null)
+    {
+      return NotFound("Book not found.");
+    }
+    
   }
 }
