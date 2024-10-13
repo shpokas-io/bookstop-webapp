@@ -32,7 +32,12 @@ public class BooksController : ControllerBase
       return BadRequest("Book data is invalid.");
     }
 
-    
+    //Add the new book to the database
+    _context.Books.Add(newBook);
+    await _context.SaveChangesAsync();
+
+    //Return the newly created book
+    return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id}, newBook);
   }
 
   //GET api/Books/search
