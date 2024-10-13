@@ -52,7 +52,7 @@ public class BooksController : ControllerBase
       return NotFound("No books match the search criteria");
     }
 
-    return Ok(result)
-    return await query.ToListAsync();
+    return Ok(result);
+    // return await query.ToListAsync();
   }
 }
