@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace bookstopAPI.Data
 {
-  public class bookstop : DbContext
+  public class LibraryContext : DbContext
   {
     public LibraryContext(DbContextOptions<LibraryContext> options) : base(options) { }
 
