@@ -22,6 +22,19 @@ public class BooksController : ControllerBase
     return Ok(books); //Ensure HTTP 200 response with data
   }
 
+  //POST api/books
+  [HttpPost]
+  public async Task<ActionResult<Book>> AddBOok(Book newBook)
+  {
+    //Check if the newbook is Valid
+    if (newBook == null)
+    {
+      return BadRequest("Book data is invalid.");
+    }
+
+    
+  }
+
   //GET api/Books/search
   [HttpGet("search")]
   public async Task<ActionResult<IEnumerable<Book>>> SearchBooks(string? name, int? year, string? type)
