@@ -1,4 +1,5 @@
 using bookstopAPI.Data;
+using bookstopAPI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -15,6 +15,31 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<LibraryContext>(options => options.UseInMemoryDatabase("LibraryDB"));
 
 var app = builder.Build();
+
+//Seed data into the in-memory database
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<LibraryContext>();
+    SeedData(context);
+}
+
+void SeedData(LibraryContext context)
+{
+    //check if the db already contains any books to avoid seeding again
+    if(!context.Books.Any())
+    {
+        context.Books.AddRange(new List<Book>
+        {
+            new Book { Id = 1, Name = "Harry Potter and the Sorcerer's Stone", Year = 1997, Type = "Book", PictureUrl= "URL" },
+            new Book { Id = 2, Name = "Harry Potter and the Chamber of Secrets", Year = 1998, Type = "Book", PictureUrl= "URL" },
+            new Book { Id = 3, Name = "The Lord of the Rings: The Fellowship of the Ring", Year = 1954, Type = "Book", PictureUrl= "URL" },
+            new Book { Id = 4, Name = "The Lord of the Rings: The Two Towers", Year = 1954, Type = "Audiobook", PictureUrl= "URL" }
+        });
+        context.SaveChanges(); //Saves changes to the database
+        
+    }
+}
 
 
 
