@@ -11,10 +11,26 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+//Enable CORS FOR SYNCING WITH FRONT END
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontendApp",
+    builder => 
+    {
+        builder.WithOrigins("http://localhost:5173/")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
+
 //Configure the in-memory database EFCORE
 builder.Services.AddDbContext<LibraryContext>(options => options.UseInMemoryDatabase("LibraryDB"));
 
 var app = builder.Build();
+
+app.UseCors("AllowFrontendApp");
+
 
 //Seed data into the in-memory database
 using(var scope = app.Services.CreateScope())
@@ -50,6 +66,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     
 }
+
+app.UseCors("AllowFrontendApp");
 
 app.UseAuthorization();
 app.UseHttpsRedirection();
