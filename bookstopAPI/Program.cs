@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontendApp",
     builder => 
     {
-        builder.WithOrigins("http://localhost:5173/")
+        builder.WithOrigins("http://localhost:5173")
         .AllowAnyHeader()
         .AllowAnyMethod();
     });
@@ -29,7 +29,6 @@ builder.Services.AddDbContext<LibraryContext>(options => options.UseInMemoryData
 
 var app = builder.Build();
 
-app.UseCors("AllowFrontendApp");
 
 
 //Seed data into the in-memory database
