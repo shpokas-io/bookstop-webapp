@@ -1,0 +1,7 @@
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/obj/Debug/net8.0/bookstopAPI.csproj.AssemblyReference.cache
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/obj/Debug/net8.0/bookstopAPI.GeneratedMSBuildEditorConfig.editorconfig
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/obj/Debug/net8.0/bookstopAPI.AssemblyInfoInputs.cache
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/obj/Debug/net8.0/bookstopAPI.AssemblyInfo.cs
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/obj/Debug/net8.0/bookstopAPI.csproj.CoreCompileInputs.cache
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/obj/Debug/net8.0/bookstopAPI.MvcApplicationPartsAssemblyInfo.cs
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/obj/Debug/net8.0/bookstopAPI.MvcApplicationPartsAssemblyInfo.cache
