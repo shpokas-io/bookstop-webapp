@@ -23,10 +23,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseAuthorization();
-    app.MapControllers();
+    
 }
-// app.UseHttpsRedirection();
+
+app.UseAuthorization();
+app.UseHttpsRedirection();
+
+//Map API COntrollers
+app.MapControllers();
 
 
 app.Run();
