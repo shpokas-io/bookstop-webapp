@@ -20,10 +20,10 @@ public class ReservationsController : ControllerBase
   {
     //Logic to calculate the total reservation cost
     var book = await _context.Books.FindAsync(reservation.BookId);
-    IFileHttpResult(Book == null)
+    if(book == null)
     {
       return NotFound("Book not found.");
     }
-    
+
   }
 }
