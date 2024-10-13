@@ -26,20 +26,20 @@ public class ReservationsController : ControllerBase
     }
 
     //Calculate total cost based on days, type,quick pickup, etc.
-    decimal dailyRate = reservation.IsAudiobook ? 3 : 2;
+    decimal dailyRate = reservation.IsAudiobook ? 3m : 2m;
     decimal totalCost = dailyRate * reservation.Days;
     if (reservation.Days > 3)
     {
-      totalCost -= totalCost * 0.1;
+      totalCost -= totalCost * 0.1m;
     }
     if(reservation.Days > 10)
     {
-      totalCost -= totalCost * 0.2;
+      totalCost -= totalCost * 0.2m;
     }
-    totalCost += 3; //This is service fee
+    totalCost += 3m; //This is service fee
     if(reservation.IsQuickPickUp)
     {
-      totalCost += 5; //Quick pickup fee
+      totalCost += 5m; //Quick pickup fee
     }
 
     reservation.TotalCost = totalCost;
@@ -48,5 +48,12 @@ public class ReservationsController : ControllerBase
 
     return CreatedAtAction("GetReservation", new { id = reservation.Id}, reservation);
  
+  }
+
+  //GET: api/Reservations
+  [HttpGet]
+  public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
+  {
+    return await _context.Reservations.ToListAsync();
   }
 }
