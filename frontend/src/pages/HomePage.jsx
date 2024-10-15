@@ -6,7 +6,6 @@ export default function HomePage() {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  return;
 
   //Fetch books from backend API
   useEffect(() => {
@@ -22,4 +21,6 @@ export default function HomePage() {
     };
     fetchBooks();
   }, []);
+
+  //Filtered books based on search query
 }
