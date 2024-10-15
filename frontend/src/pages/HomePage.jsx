@@ -23,4 +23,52 @@ export default function HomePage() {
   }, []);
 
   //Filtered books based on search query
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    const filtered = books.filter((book) =>
+      book.name.toLowerCase().include(query)
+    );
+    setFilteredBooks(filtered);
+  };
+
+  return (
+    <div>
+      <Header />
+
+      {/* Search input */}
+      <div className="p-4">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearch}
+          placeholder="Search books"
+          className="w-full p-2 border border-gray-300 rounded"
+        ></input>
+      </div>
+
+      {/* Book cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        {filteredBooks.length > 0 ? (
+          filteredBooks.map((book) => (
+            <div
+              key={book.id}
+              className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center"
+            >
+              <img
+                src={book.imageUrl}
+                alt={book.name}
+                className="w-32 h-48 object-cover mb-4"
+              />
+              <h2 className="text-xl font-bold">{book.name}</h2>
+              <p className="text-gray-500">Release Date: {book.releaseDate}</p>
+            </div>
+          ))
+        ) : (
+          <p>No books found</p>
+        )}
+      </div>
+    </div>
+  );
 }
