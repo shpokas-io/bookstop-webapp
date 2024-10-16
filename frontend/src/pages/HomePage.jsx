@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function HomePage() {
   // States that hold the list of books and search query
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [reservations, setReservations] = useState([]); //State for reservations
+  const navigate = useNavigate();
   //Fetch books from backend API
   useEffect(() => {
     const fetchBooks = async () => {
@@ -27,9 +28,15 @@ export default function HomePage() {
     setSearchQuery(query);
 
     const filtered = books.filter((book) =>
-      book.name.toLowerCase().include(query)
+      book.name.toLowerCase().includes(query)
     );
     setFilteredBooks(filtered);
+  };
+
+  //Handle book reservation
+  const handleReserve = (book) => {
+    setReservations((prev) => [...prev, book]);
+    alert(`${book.name} reserved successfully!`);
   };
 
   return (
@@ -59,7 +66,14 @@ export default function HomePage() {
                 className="w-32 h-48 object-cover mb-4"
               />
               <h2 className="text-xl font-bold">{book.name}</h2>
-              <p className="text-gray-500">Release Date: {book.releaseDate}</p>
+              <p className="text-gray-500">Release Date: {book.year}</p>
+              {/* rsrv bttn */}
+              <button
+                onClick={() => handleReserve(book)} //Reserve book
+                className="mt-2 bg-blue-500 text-white p-2 rounded"
+              >
+                Reserve book
+              </button>
             </div>
           ))
         ) : (
