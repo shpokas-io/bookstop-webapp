@@ -1,8 +1,10 @@
 import { useState } from "react";
+// import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   // State for burger menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };

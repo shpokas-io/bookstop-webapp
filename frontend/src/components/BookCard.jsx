@@ -5,6 +5,8 @@ export default function BookCard({ book, onClick }) {
     <div
       className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center cursor-pointer "
       onClick={onClick}
+      role="button" //Indicate that this button clickable
+      tabIndex={0} //Make it focusable for keyboard navigation
     >
       <img
         src={book.pictureUrl}
@@ -17,6 +19,7 @@ export default function BookCard({ book, onClick }) {
   );
 }
 
+//Defined prop types for better documentation and error checking
 BookCard.propTypes = {
   book: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

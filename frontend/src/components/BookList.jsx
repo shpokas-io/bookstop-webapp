@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-
+import PropTypes from "prop-types";
 import BookCard from "./BookCard";
 
 export default function BookList({ filteredBooks, onBookClick }) {
@@ -14,8 +13,21 @@ export default function BookList({ filteredBooks, onBookClick }) {
           />
         ))
       ) : (
-        <p>No books found</p>
+        <p className="text-center text-gray-500">No books found</p>
       )}
     </div>
   );
 }
+
+//Defined prop types for better documentation and error checking
+BookList.propTypes = {
+  filteredBooks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      pictureUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  onBookClick: PropTypes.func.isRequired,
+};
