@@ -46,10 +46,10 @@ void SeedData(LibraryContext context)
     {
         context.Books.AddRange(new List<Book>
         {
-            new Book { Id = 1, Name = "Harry Potter and the Sorcerer's Stone", Year = 1997, Type = "Book", PictureUrl= "https://covers.openlibrary.org/b/id/7984916-L.jpg" },
-            new Book { Id = 2, Name = "Harry Potter and the Chamber of Secrets", Year = 1998, Type = "Book", PictureUrl= "https://covers.openlibrary.org/b/id/7984919-L.jpg" },
-            new Book { Id = 3, Name = "The Lord of the Rings: The Fellowship of the Ring", Year = 1954, Type = "Book", PictureUrl= "https://covers.openlibrary.org/b/id/6202464-L.jpg" },
-            new Book { Id = 4, Name = "The Lord of the Rings: The Two Towers", Year = 1954, Type = "Audiobook", PictureUrl= "https://covers.openlibrary.org/b/id/6202465-L.jpg" }
+            new Book { Id = 1, Name = "Harry Potter and the Sorcerer's Stone", Year = 1997, Type = "Book", PictureUrl= "https://m.media-amazon.com/images/I/91wKDODkgWL._SY466_.jpg" },
+            new Book { Id = 2, Name = "Harry Potter and the Chamber of Secrets", Year = 1998, Type = "Book", PictureUrl= "https://m.media-amazon.com/images/I/918wxhKJaPL._SY466_.jpg" },
+            new Book { Id = 3, Name = "The Lord of the Rings: The Fellowship of the Ring", Year = 1954, Type = "Book", PictureUrl= "https://m.media-amazon.com/images/I/41qCdBemr9L._SY445_SX342_.jpg" },
+            new Book { Id = 4, Name = "The Lord of the Rings: The Two Towers", Year = 1954, Type = "Audiobook", PictureUrl= "https://m.media-amazon.com/images/I/41Lr-35uz8L._SY445_SX342_.jpg" }
         });
         context.SaveChanges(); //Saves changes to the database
 
