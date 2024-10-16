@@ -9,11 +9,6 @@ export default function HomePage() {
   // eslint-disable-next-line no-unused-vars
   const [reservations, setReservations] = useState([]); //State for reservations
 
-  //Aditional state for reservation details
-  const [selectedType, setSelectedType] = useState("Book");
-  const [selectedDuration, setSelectedDuration] = useState(1);
-  const [selectedQuickPickup, setSelectedQuickPickup] = useState(false);
-
   //Fetch books from backend API
   useEffect(() => {
     const fetchBooks = async () => {
@@ -86,45 +81,6 @@ export default function HomePage() {
           placeholder="Search books"
           className="w-full p-2 border border-gray-300 rounded"
         ></input>
-      </div>
-      {/* Book type selection */}
-      <div className="p-4">
-        <label>
-          type:
-          <select
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-            className="ml-2 border border-gray-300 rounded"
-          >
-            <option value="Book">Book</option>
-            <option value="Audiobook">AdioBook</option>
-          </select>
-        </label>
-      </div>
-      {/* Duration selection */}
-      <div className="p-4">
-        <label>
-          Duration(days):
-          <input
-            type="number"
-            value={selectedDuration}
-            onChange={(e) => setSelectedDuration(Number(e.target.value))}
-            min="1"
-            className="ml-2 border border-gray-300 rounded w-16"
-          />
-        </label>
-      </div>
-      {/* Quick pickup option */}
-      <div className="p-4">
-        <label>
-          Quick Pickup:
-          <input
-            type="checkbox"
-            value={selectedQuickPickup}
-            onChange={(e) => setSelectedQuickPickup(e.target.value)}
-            className="ml-2"
-          />
-        </label>
       </div>
 
       {/* Book cards */}
