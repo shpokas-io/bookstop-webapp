@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import BookCard from "../components/BookCard";
 import SearchInput from "../components/SearchInput";
 import BookList from "../components/BookList";
 
@@ -75,12 +74,16 @@ export default function HomePage() {
         alert("Error creating reservation:" + JSON.stringify(errorData.errors));
       } else {
         const result = await response.json();
-        console.log("REservation successful:", result);
+        console.log("Reservation successful:", result);
 
         //Add the reservation to the state
         setReservations((prevReservations) => [
           ...prevReservations,
-          reservationData,
+          {
+            ...reservationData,
+            id: result.id,
+            totalCost: result.totalCost,
+          },
         ]);
 
         // CLose the modal after reserving

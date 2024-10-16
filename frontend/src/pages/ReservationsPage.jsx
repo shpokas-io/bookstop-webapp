@@ -71,6 +71,10 @@ export default function ReservationsPage() {
               <p className="text-gray-500">
                 Quick Pickup: {reservation.isQuickPickUp ? "Yes" : "No"}
               </p>
+              <p className="text-gray-500">
+                {/* Display total-cost */}
+                {`Total cost: ${reservation.totalCost.toFixed(2)}`}
+              </p>
               <button
                 onClick={() => handleRemoveReservation(reservation.id)}
                 className="mt-4 bg-red-500 text-white py-2 px-4 rounded"
