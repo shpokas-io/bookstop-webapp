@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 export default function HomePage() {
   // States that hold the list of books and search query
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [reservations, setReservations] = useState([]); //State for reservations
-  const navigate = useNavigate();
   //Fetch books from backend API
   useEffect(() => {
     const fetchBooks = async () => {
@@ -35,13 +34,12 @@ export default function HomePage() {
 
   //Handle book reservation
   const handleReserve = (book) => {
-    setReservations((prev) => [...prev, book]);
+    setReservations((prev) => {
+      const newReservations = [...prev, book];
+      localStorage.setItem("reservations", JSON.stringify(newReservations));
+      return newReservations;
+    });
     alert(`${book.name} reserved successfully!`);
-  };
-
-  //Navigate to ReservationsPage
-  const handleViewReservations = () => {
-    navigate("/reservations");
   };
 
   return (
@@ -86,12 +84,6 @@ export default function HomePage() {
           <p>No books found</p>
         )}
       </div>
-      <button
-        onClick={handleViewReservations}
-        className="mt-4 bg-green-500 text-white p-2 rounded"
-      >
-        View reservations test
-      </button>
     </div>
   );
 }

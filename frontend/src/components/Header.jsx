@@ -9,7 +9,9 @@ export default function Header() {
 
   return (
     <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
-      <h1 className="text-xl font bold">BookSpot</h1>
+      <h1 className="text-xl font bold">
+        <a href="/">BookSpot</a>
+      </h1>
 
       <button
         onClick={toggleMenu}
