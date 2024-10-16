@@ -153,7 +153,7 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* COnfirm and Cancel modal */}
+            {/* Confirm and Cancel modal */}
             <div className="flex justify-between">
               <button
                 onClick={() => setShowModal(false)}

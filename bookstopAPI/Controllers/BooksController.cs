@@ -24,9 +24,9 @@ public class BooksController : ControllerBase
 
   //POST api/books
   [HttpPost]
-  public async Task<ActionResult<Book>> AddBOok(Book newBook)
+  public async Task<ActionResult<Book>> AddBook(Book newBook)
   {
-    //Check if the newbook is Valid
+    //Validate the new book
     if (newBook == null)
     {
       return BadRequest("Book data is invalid.");
@@ -46,31 +46,32 @@ public class BooksController : ControllerBase
   {
     var query = _context.Books.AsQueryable();
 
-//FIlter types
+    //Filter by name if provided
     if (!string.IsNullOrEmpty(name))
     {
       query = query.Where(b => b.Name.Contains(name));
     }
 
-    //Filter by year (if provided)
+    //Filter by year if provided
     if(year.HasValue)
     {
       query = query.Where(b => b.Year == year.Value);
     }
 
-    //Further by "type" (Book/AudioBook)
+    //Further by "type" Audio or book
     if(!string.IsNullOrEmpty(type))
     {
       query = query.Where(b => b.Type.Equals(type, StringComparison.OrdinalIgnoreCase));
     }
 
+    //Execute query and get the result
     var result = await query.ToListAsync();
     if(!result.Any())
     {
       return NotFound("No books match the search criteria");
     }
-
+    //Return the found books
     return Ok(result);
-    // return await query.ToListAsync();
+    
   }
 }

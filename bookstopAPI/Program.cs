@@ -11,20 +11,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
-//Enable CORS FOR SYNCING WITH FRONT END
+//Enable CORS for syncing with the frontend application
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontendApp",
     builder => 
     {
-        builder.WithOrigins("http://localhost:5173")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
+        builder.WithOrigins("http://localhost:5173")// FrontEnd port
+        .AllowAnyHeader()//Allow any fetch header
+        .AllowAnyMethod();//Allow any methods(GET,POST,DELETE etc.)
     });
 });
 
 
-//Configure the in-memory database EFCORE
+//Configure the in-memory database EF CORE
 builder.Services.AddDbContext<LibraryContext>(options => options.UseInMemoryDatabase("LibraryDB"));
 
 var app = builder.Build();
@@ -38,7 +38,7 @@ using(var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<LibraryContext>();
     SeedData(context);
 }
-
+// MEthod to seed initial book data into the database
 void SeedData(LibraryContext context)
 {
     //check if the db already contains any books to avoid seeding again
@@ -61,15 +61,15 @@ void SeedData(LibraryContext context)
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(); //Enable Swagger in development
+    app.UseSwaggerUI();//Use Swagger UI
     
 }
 
-app.UseCors("AllowFrontendApp");
+app.UseCors("AllowFrontendApp"); //Apply CORS policy
 
-app.UseAuthorization();
-app.UseHttpsRedirection();
+app.UseAuthorization();//Enable authorization
+app.UseHttpsRedirection();//Redirect HTTP requests to more secure HTTPS
 
 //Map API COntrollers
 app.MapControllers();
