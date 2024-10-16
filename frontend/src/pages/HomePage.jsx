@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import BookCard from "../components/BookCard";
+
 export default function HomePage() {
   // States that hold the list of books and search query
   const [books, setBooks] = useState([]);
@@ -68,15 +70,6 @@ export default function HomePage() {
         const result = await response.json();
         console.log("REservation successful:", result);
       }
-      // if (response.ok) {
-      //   const newReservation = await response.json();
-      //   setReservations((prev) => [...prev, newReservation]);
-      //   alert("REservation created successfully!");
-      // } else {
-      //   const errorData = await response.json();
-      //   console.error("Error response:", errorData);
-      //   alert("Error creating reservation:" + errorData);
-      // }
     } catch (error) {
       console.error("Error reserving book:", error);
     }
@@ -94,7 +87,6 @@ export default function HomePage() {
           className="w-full p-2 border border-gray-300 rounded"
         ></input>
       </div>
-
       {/* Book type selection */}
       <div className="p-4">
         <label>
@@ -109,7 +101,6 @@ export default function HomePage() {
           </select>
         </label>
       </div>
-
       {/* Duration selection */}
       <div className="p-4">
         <label>
@@ -123,7 +114,6 @@ export default function HomePage() {
           />
         </label>
       </div>
-
       {/* Quick pickup option */}
       <div className="p-4">
         <label>
@@ -136,30 +126,12 @@ export default function HomePage() {
           />
         </label>
       </div>
+
       {/* Book cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
-            <div
-              key={book.id}
-              className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center"
-            >
-              <img
-                src={book.pictureUrl}
-                alt={book.name}
-                className="w-32 h-48 object-cover mb-4"
-              />
-              <h2 className="text-xl font-bold">{book.name}</h2>
-              <p className="text-gray-500">Release Date: {book.year}</p>
-
-              {/* rsrv bttn */}
-              <button
-                onClick={() => handleReserve(book)} //Reserve book
-                className="mt-2 bg-blue-500 text-white p-2 rounded"
-              >
-                Reserve book
-              </button>
-            </div>
+            <BookCard key={book.id} book={book} handleReserve={handleReserve} />
           ))
         ) : (
           <p>No books found</p>
