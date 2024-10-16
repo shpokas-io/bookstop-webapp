@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import BookCard from "../components/BookCard";
+import SearchInput from "../components/SearchInput";
+import BookList from "../components/BookList";
 
 export default function HomePage() {
   // States that hold the list of books and search query
@@ -91,34 +93,9 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Search input */}
-      <div className="p-4">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearch}
-          placeholder="Search books"
-          className="w-full p-2 border border-gray-300 rounded"
-        ></input>
-      </div>
-
-      {/* Book cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => (
-            <BookCard
-              key={book.id}
-              book={book}
-              onClick={() => handleBookClick(book)}
-            />
-          ))
-        ) : (
-          <p>No books found</p>
-        )}
-      </div>
-
+      <SearchInput searchQuery={searchQuery} onSearch={handleSearch} />
+      <BookList filteredBooks={filteredBooks} onBookClick={handleBookClick} />
       {/* Modal for reservation */}
-
       {showModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
