@@ -33,13 +33,30 @@ export default function HomePage() {
   };
 
   //Handle book reservation
-  const handleReserve = (book) => {
-    setReservations((prev) => {
-      const newReservations = [...prev, book];
-      localStorage.setItem("reservations", JSON.stringify(newReservations));
-      return newReservations;
-    });
-    alert(`${book.name} reserved successfully!`);
+  const handleReserve = async (book) => {
+    const reservationData = {
+      bookId: book.id,
+      userId: "123",
+      bookType: selectedType,
+      duration: selectedDuration,
+      quickPickup: selectedQuickPickUp,
+      totalCost: calculateTotalCost(
+        selectedType,
+        selectedDuration,
+        selectedQuickPickUp
+      ),
+    };
+
+    try {
+      const response = await fetch("http://localhost:5063/api/reservations",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reservationData),
+      )
+    }
+
   };
 
   return (

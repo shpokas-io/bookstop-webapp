@@ -18,6 +18,10 @@ public class ReservationsController : ControllerBase
   [HttpPost]
   public async Task<ActionResult<Reservation>> CreateReservation(Reservation reservation)
   {
+if(reservation ==null || reservation.Days <= 0 || string.IsNullOrWhiteSpace(reservation.UserId))
+{
+  return BadRequest("Invalid reservation details.");
+}
     //Logic to calculate the total reservation cost
     var book = await _context.Books.FindAsync(reservation.BookId);
     if(book == null)
