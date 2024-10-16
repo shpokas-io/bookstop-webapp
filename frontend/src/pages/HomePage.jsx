@@ -46,15 +46,15 @@ export default function HomePage() {
   };
 
   //Handle book reservation
-  const handleReserve = async (book) => {
+  const handleReserve = async () => {
     const reservationData = {
-      bookId: book.id,
+      bookId: selectedBook.id,
       userId: "123",
-      isAudiobook: book.isAudiobook,
-      days: 1,
-      isQuickPickUp: false,
-      bookName: book.name,
-      bookPictureUrl: book.pictureUrl,
+      isAudiobook: selectedType === "Audiobook",
+      days: selectedDuration,
+      isQuickPickUp: selectedQuickPickup,
+      bookName: selectedBook.name,
+      bookPictureUrl: selectedBook.pictureUrl,
     };
 
     console.log("Reservation Data:", reservationData);
@@ -74,6 +74,15 @@ export default function HomePage() {
       } else {
         const result = await response.json();
         console.log("REservation successful:", result);
+
+        //Add the reservation to the state
+        setReservations((prevReservations) => [
+          ...prevReservations,
+          reservationData,
+        ]);
+
+        // CLose the modal after reserving
+        setShowModal(false);
       }
     } catch (error) {
       console.error("Error reserving book:", error);
