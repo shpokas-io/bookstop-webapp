@@ -141,6 +141,18 @@ export default function HomePage() {
               </label>
             </div>
 
+            {/* Pricing details */}
+            <div className="mb-4">
+              <h4 className="font-bold">Pricing details:</h4>
+              <ul>
+                <li>Book(1day): 2€</li>
+                <li>AudioBook(1day): 3€</li>
+                <li>Service Fee: 3€</li>
+                <li>Quick Pickup: 5€</li>
+                <li>Total price -{">"} ReservationPage</li>
+              </ul>
+            </div>
+
             {/* COnfirm and Cancel modal */}
             <div className="flex justify-between">
               <button
