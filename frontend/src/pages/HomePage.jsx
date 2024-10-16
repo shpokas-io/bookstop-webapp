@@ -8,6 +8,11 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [reservations, setReservations] = useState([]); //State for reservations
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedType, setSelectedType] = useState("Book");
+  const [selectedDuration, setSelectedDuration] = useState(1);
+  const [selectedQuickPickup, setSelectedQuickPickup] = useState(false);
 
   //Fetch books from backend API
   useEffect(() => {
@@ -33,6 +38,11 @@ export default function HomePage() {
       book.name.toLowerCase().includes(query)
     );
     setFilteredBooks(filtered);
+  };
+  //Open the modal window when modal is clicked
+  const handleBookClick = (book) => {
+    setSelectedBook(book);
+    setShowModal(true);
   };
 
   //Handle book reservation
@@ -87,12 +97,79 @@ export default function HomePage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
-            <BookCard key={book.id} book={book} handleReserve={handleReserve} />
+            <BookCard
+              key={book.id}
+              book={book}
+              onClick={() => handleBookClick(book)}
+            />
           ))
         ) : (
           <p>No books found</p>
         )}
       </div>
+
+      {/* Modal for reservation */}
+
+      {showModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="text-xl mb-4 font-bold">{selectedBook.name}</h3>
+
+            {/* Book type selection */}
+            <div className="mb-4">
+              <label>Type:</label>
+              <select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                className="ml-2 border border-gray-300 rounded"
+              >
+                <option value="Book">Book</option>
+                <option value="Audiobook">Audiobook</option>
+              </select>
+            </div>
+            {/* DUration selection */}
+            <div className="mb-4">
+              <label>Duration (days):</label>
+              <input
+                type="number"
+                value={selectedDuration}
+                onChange={(e) => setSelectedDuration(Number(e.target.value))}
+                min="1"
+                className="ml-2 border border-gray-300 rounded w-16"
+              />
+            </div>
+
+            {/* Quick pickup option */}
+            <div className="mb-4">
+              <label>
+                Quick Pickup:
+                <input
+                  type="checkbox"
+                  checked={selectedQuickPickup}
+                  onChange={(e) => setSelectedQuickPickup(e.target.checked)}
+                  className="ml-2"
+                />
+              </label>
+            </div>
+
+            {/* COnfirm and Cancel modal */}
+            <div className="flex justify-between">
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-red-500 text-white p-2 rounded"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleReserve(selectedBook)}
+                className="bg-blue-500 text-white p-2 rounded"
+              >
+                Reserve
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
