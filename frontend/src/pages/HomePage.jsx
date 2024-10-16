@@ -8,7 +8,7 @@ export default function HomePage() {
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [reservations, setReservations] = useState([]); //State for reservations
+  const [reservations, setReservations] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedType, setSelectedType] = useState("Book");
@@ -40,7 +40,8 @@ export default function HomePage() {
     );
     setFilteredBooks(filtered);
   };
-  //Open the modal window when modal is clicked
+
+  //Open the modal window when book is clicked
   const handleBookClick = (book) => {
     setSelectedBook(book);
     setShowModal(true);
