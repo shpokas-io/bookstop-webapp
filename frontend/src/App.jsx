@@ -9,7 +9,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/reservations" element={<ReservationsPage />} /> */}
         </Routes>
       </div>
     </Router>
