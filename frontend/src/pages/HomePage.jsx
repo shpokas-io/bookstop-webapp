@@ -39,6 +39,11 @@ export default function HomePage() {
     alert(`${book.name} reserved successfully!`);
   };
 
+  //Navigate to ReservationsPage
+  const handleViewReservations = () => {
+    navigate("/reservations");
+  };
+
   return (
     <div>
       {/* Search input */}
@@ -67,6 +72,7 @@ export default function HomePage() {
               />
               <h2 className="text-xl font-bold">{book.name}</h2>
               <p className="text-gray-500">Release Date: {book.year}</p>
+
               {/* rsrv bttn */}
               <button
                 onClick={() => handleReserve(book)} //Reserve book
@@ -80,6 +86,12 @@ export default function HomePage() {
           <p>No books found</p>
         )}
       </div>
+      <button
+        onClick={handleViewReservations}
+        className="mt-4 bg-green-500 text-white p-2 rounded"
+      >
+        View reservations test
+      </button>
     </div>
   );
 }
