@@ -74,4 +74,21 @@ if(reservation ==null || reservation.Days <= 0 || string.IsNullOrWhiteSpace(rese
     }
     return reservation;
   }
+
+  [HttpDelete("{id}")]
+  public async Task<ActionResult> DeleteReservation(int id)
+  {
+    //Find the reservation by ID
+    var reservation = await _context.Reservations.FindAsync(id);
+
+    if(reservation == null)
+    {
+      return NotFound();
+    }
+
+    _context.Reservations.Remove(reservation);
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+  }
 }

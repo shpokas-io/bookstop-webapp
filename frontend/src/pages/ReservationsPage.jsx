@@ -22,6 +22,32 @@ export default function ReservationsPage() {
     fetchReservations();
   }, []);
 
+  // Handle removal of reservations
+  const handleRemoveReservation = async (reservationId) => {
+    if (window.confirm("Are you sure you want to remove this reservation?")) {
+      try {
+        const response = await fetch(
+          `http://localhost:5063/api/reservations/${reservationId}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error("Failed to remove reservation:" + errorData.message);
+        }
+        // Update the reservation state to remove the deleted reservation
+        setReservations((prevReservations) =>
+          prevReservations.filter(
+            (reservation) => reservation.id !== reservationId
+          )
+        );
+      } catch (error) {
+        console.error("Error removing reservation:", error);
+      }
+    }
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold p-4">My Reservations</h1>
@@ -45,6 +71,12 @@ export default function ReservationsPage() {
               <p className="text-gray-500">
                 Quick Pickup: {reservation.isQuickPickUp ? "Yes" : "No"}
               </p>
+              <button
+                onClick={() => handleRemoveReservation(reservation.id)}
+                className="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+              >
+                Remove reservation
+              </button>
             </div>
           ))
         ) : (
