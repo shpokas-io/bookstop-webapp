@@ -7,7 +7,7 @@ export default function ReservationsPage() {
     const fetchReservations = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5063/api/reservations?userId=123"
+          "https://bkstapp-7f24cea47b9e.herokuapp.com/api/reservations?userId=123"
         ); // Adjust userId as needed
         if (!response.ok) {
           throw new Error("Failed to fetch reservations");
@@ -27,7 +27,7 @@ export default function ReservationsPage() {
     if (window.confirm("Are you sure you want to remove this reservation?")) {
       try {
         const response = await fetch(
-          `http://localhost:5063/api/reservations/${reservationId}`,
+          `https://bkstapp-7f24cea47b9e.herokuapp.com/api/reservations/${reservationId}`,
           {
             method: "DELETE",
           }
