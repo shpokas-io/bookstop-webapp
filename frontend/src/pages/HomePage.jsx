@@ -20,7 +20,9 @@ export default function HomePage() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch("http://localhost:5063/api/books");
+        const response = await fetch(
+          "https://bkstapp-7f24cea47b9e.herokuapp.com/api/books"
+        );
         const data = await response.json();
         setBooks(data);
         setFilteredBooks(data); //Initialize the filtered books
@@ -51,13 +53,16 @@ export default function HomePage() {
   //Handle book reservation
   const handleReserve = async (reservationData) => {
     try {
-      const response = await fetch("http://localhost:5063/api/reservations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reservationData),
-      });
+      const response = await fetch(
+        "https://bkstapp-7f24cea47b9e.herokuapp.com/api/reservations",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reservationData),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
