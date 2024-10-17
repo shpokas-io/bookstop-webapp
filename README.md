@@ -6,7 +6,7 @@
     Book Library | Full-stack | Responsive
     <br />
     <br />
-    <!-- <a href="https://foodler-react-app.netlify.app">View Demo</a> -->
+    <a href="https://bookspot-webapp.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/shpokas-io/bookstop-webapp/issues">Report Bug</a>
     ·
@@ -44,11 +44,12 @@
 
 BookStop is a full-stack application that provides users with a seamless experience for managing and discovering books. The project is built using ASP.NET Core for the backend and React with Vite for the frontend.
 
-- Book Management: Add, edit, delete, and view books.
-- Search Functionality: Easily find books using search filters.
-- Responsive Design: Mobile-friendly interface for an optimal user experience.
+- Add, edit, delete, and view books.
+- Easily find books using search filters.
+- Mobile-friendly interface for an optimal user experience.
+- Calculations coming from backend api
 
-<img src="./frontend/public/dekstop.png" width="800px" />
+<img src="./public/dekstop.png" width="800px" />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
