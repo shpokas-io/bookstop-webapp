@@ -148,3 +148,8 @@
 /home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/appsettings.json
 /home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/bookstopAPI.deps.json
 /home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/bookstopAPI.runtimeconfig.json
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/out/web.config
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/out/appsettings.Development.json
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/out/appsettings.json
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/out/bookstopAPI.deps.json
+/home/shpokas/programming/fullstack-projects/BookStop-webapp/bookstopAPI/bin/Debug/net8.0/out/out/bookstopAPI.runtimeconfig.json
