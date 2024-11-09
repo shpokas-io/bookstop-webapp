@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 export default function ReservationCard({ reservation, onRemove }) {
   return (
@@ -28,3 +28,15 @@ export default function ReservationCard({ reservation, onRemove }) {
     </div>
   );
 }
+
+ReservationCard.propTypes = {
+  reservation: PropTypes.shape({
+    bookPictureUrl: PropTypes.string.isRequired,
+    bookName: PropTypes.string.isRequired,
+    days: PropTypes.number.isRequired,
+    isAudiobook: PropTypes.bool.isRequired,
+    isQuickPickUp: PropTypes.bool.isRequired,
+    totalCost: PropTypes.number.isRequired,
+  }).isRequired,
+  onRemove: PropTypes.func.isRequired,
+};
