@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import BookCard from "./BookCard";
 
-export default function BookList({ filteredBooks, onBookClick }) {
+export default function BookList({ filteredBooks = [], onBookClick }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {filteredBooks.length > 0 ? (
@@ -19,7 +19,6 @@ export default function BookList({ filteredBooks, onBookClick }) {
   );
 }
 
-//Defined prop types for better documentation and error checking
 BookList.propTypes = {
   filteredBooks: PropTypes.arrayOf(
     PropTypes.shape({
@@ -28,6 +27,6 @@ BookList.propTypes = {
       name: PropTypes.string.isRequired,
       year: PropTypes.number.isRequired,
     })
-  ).isRequired,
+  ),
   onBookClick: PropTypes.func.isRequired,
 };

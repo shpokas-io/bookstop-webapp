@@ -1,8 +1,12 @@
-const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5063";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5063";
 
 export const fetchBooks = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/api/books`);
+    const response = await fetch(`${BASE_URL}/api/books`, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch books");
     }
