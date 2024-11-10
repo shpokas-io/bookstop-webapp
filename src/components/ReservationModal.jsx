@@ -1,5 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Modal from "./ui/Modal";
+import Button from "./ui/Button";
+import InputField from "./ui/InputField";
+import Select from "./ui/Select";
 
 export default function ReservationModal({ selectedBook, onClose, onReserve }) {
   const [selectedType, setSelectedType] = useState("Book");
@@ -17,54 +21,39 @@ export default function ReservationModal({ selectedBook, onClose, onReserve }) {
       bookPictureUrl: selectedBook.pictureUrl,
     };
 
-    console.log("Reservation data", reservationData);
-
     onReserve(reservationData);
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+    <Modal isOpen={true} onClose={onClose}>
+      <div className="w-96">
         <h3 className="text-xl mb-4 font-bold">{selectedBook.name}</h3>
 
-        {/* Book type selection */}
-        <div className="mb-4">
-          <label>Type:</label>
-          <select
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-            className="ml-2 border border-gray-300 rounded"
-          >
-            <option value="Book">Book</option>
-            <option value="Audiobook">Audiobook</option>
-          </select>
-        </div>
-        {/* Duration selection */}
-        <div className="mb-4">
-          <label>Duration (days):</label>
-          <input
-            type="number"
-            value={selectedDuration}
-            onChange={(e) => setSelectedDuration(Number(e.target.value))}
-            min="1"
-            className="ml-2 border border-gray-300 rounded w-16"
-          />
-        </div>
+        <Select
+          label="Type:"
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value)}
+          options={[
+            { value: "Book", label: "Book" },
+            { value: "Audiobook", label: "Audiobook" },
+          ]}
+        />
 
-        {/* Quick pickup option */}
-        <div className="mb-4">
-          <label>
-            Quick Pickup:
-            <input
-              type="checkbox"
-              checked={selectedQuickPickup}
-              onChange={(e) => setSelectedQuickPickup(e.target.checked)}
-              className="ml-2"
-            />
-          </label>
-        </div>
+        <InputField
+          label="Duration (days):"
+          type="number"
+          value={selectedDuration}
+          onChange={(e) => setSelectedDuration(Number(e.target.value))}
+          min="1"
+        />
 
-        {/* Pricing details */}
+        <InputField
+          label="Quick Pickup:"
+          type="checkbox"
+          checked={selectedQuickPickup}
+          onChange={(e) => setSelectedQuickPickup(e.target.checked)}
+        />
+
         <div className="mb-4">
           <h4 className="font-bold">Pricing details:</h4>
           <ul>
@@ -72,31 +61,28 @@ export default function ReservationModal({ selectedBook, onClose, onReserve }) {
             <li>Audiobook (1 day): 3€</li>
             <li>Service Fee: 3€</li>
             <li>Quick Pickup: 5€</li>
-            <li>Total price -{">"} ReservationPage</li>
           </ul>
         </div>
 
-        {/* Confirm and Cancel modal */}
-        <div className="flex justify-between">
-          <button
+        <div className="flex justify-between mt-4">
+          <Button
+            label="Cancel"
             onClick={onClose}
-            className="bg-red-500 text-white p-2 rounded"
-          >
-            Cancel
-          </button>
-          <button
+            variant="remove"
+            color="bg-red-500 text-white"
+          />
+          <Button
+            label="Reserve"
             onClick={handleReserveClick}
-            className="bg-blue-500 text-white p-2 rounded"
-          >
-            Reserve
-          </button>
+            variant="default"
+            color="bg-blue-500 text-white"
+          />
         </div>
       </div>
-    </div>
+    </Modal>
   );
 }
 
-//Define prop types for ResevationModal
 ReservationModal.propTypes = {
   selectedBook: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
