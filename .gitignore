@@ -1,26 +1,68 @@
-# Ignore everything by default
-*
-
-# Allow specific files and directories to be included
-!.gitignore
-!src/
-!public/
-!assets/
-!components/
-!index.html
-!vite.config.js
-!package.json
-!package-lock.json
-!*.md
-!.env
-!.env.local
-
-# Ignore specific files and folders within directories
-src/node_modules/
-dist/
-public/node_modules/
-*.log
-*.tmp
-.DS_Store
+# Node modules
 node_modules/
+
+# Build output directories
 dist/
+build/
+
+# Vite
+.vite/
+
+# Logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE settings (optional, but good to include)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Cache directories and files
+.cache/
+coverage/
+.cache-loader/
+*.gz
+
+# Tailwind output
+tailwind.config.js
+
+# ESLint and Prettier
+.eslintcache
+
+# Temporary files
+*.tmp
+*.swp
+
+# Public and generated assets (when applicable)
+public/assets/
+
+# Ignoring screenshots and design files
+public/dekstop.png
+public/mobile.png
+public/figmadesign.png
+
+# Ignoring unnecessary files from the build process
+src/assets/images/Design/
+
+# Ignoring specific files from the build output
+dist/*.svg
+dist/*.png
+
+# Ignore .npmrc
+.npmrc
