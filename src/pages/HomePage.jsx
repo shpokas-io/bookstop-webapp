@@ -50,7 +50,7 @@ export default function HomePage() {
   return (
     <div>
       <SearchInput searchQuery={searchQuery} onSearch={handleSearch} />
-      <BookList books={filteredBooks} onBookClick={handleBookClick} />
+      <BookList filteredBooks={filteredBooks} onBookClick={handleBookClick} />
       {showModal && selectedBook && (
         <ReservationModal
           selectedBook={selectedBook}
