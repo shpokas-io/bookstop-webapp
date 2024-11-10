@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 
 const SearchInput = ({ searchQuery, onSearch }) => {
   return (
@@ -12,6 +12,11 @@ const SearchInput = ({ searchQuery, onSearch }) => {
       />
     </div>
   );
+};
+
+SearchInput.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchInput;
