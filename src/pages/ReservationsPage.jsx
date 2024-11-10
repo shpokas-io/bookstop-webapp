@@ -10,6 +10,7 @@ export default function ReservationsPage() {
     const getReservations = async () => {
       try {
         const data = await fetchReservations(userId);
+        console.log("Reservations data:", data);
         setReservations(data);
       } catch (error) {
         console.error("Error fetching reservations:", error);
