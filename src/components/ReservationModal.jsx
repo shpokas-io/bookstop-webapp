@@ -2,7 +2,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 export default function ReservationModal({ selectedBook, onClose, onReserve }) {
-  //State
   const [selectedType, setSelectedType] = useState("Book");
   const [selectedDuration, setSelectedDuration] = useState(1);
   const [selectedQuickPickup, setSelectedQuickPickup] = useState(false);
@@ -10,13 +9,16 @@ export default function ReservationModal({ selectedBook, onClose, onReserve }) {
   const handleReserveClick = () => {
     const reservationData = {
       bookId: selectedBook.id,
-      userId: "123", // Replace with actual user ID
+      userId: "123",
       isAudiobook: selectedType === "Audiobook",
       days: selectedDuration,
       isQuickPickUp: selectedQuickPickup,
       bookName: selectedBook.name,
       bookPictureUrl: selectedBook.pictureUrl,
     };
+
+    console.log("Reservation data", reservationData);
+
     onReserve(reservationData);
   };
 

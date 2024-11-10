@@ -29,12 +29,12 @@ export const createReservation = async (reservationData) => {
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.errors || "Failed to create reservation");
+      throw new Error(errorData.message || "Failed to create reservation");
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Error creating reservation:", error);
+    console.error("Error creating reservation:", error.message);
     throw error;
   }
 };
