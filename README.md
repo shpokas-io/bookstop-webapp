@@ -1,5 +1,9 @@
 <!-- PROJECT LOGO -->
 
+<p align="center">
+  <img src="./src/assets/bookstop-removebg.png" width="200px" />
+</p>
+
 <h3 align="center"> BookStop </h3>
 
   <p align="center">
