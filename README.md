@@ -6,7 +6,7 @@
     Book Library | Full-stack | Responsive
     <br />
     <br />
-    <a href="https://bookspot-webapp.netlify.app/">View Demo</a>
+    <a href="https://bookstop-webapp.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/shpokas-io/bookstop-webapp/issues">Report Bug</a>
     ·
@@ -42,7 +42,7 @@
 
 ## About The Project
 
-BookStop is a full-stack application that provides users with a seamless experience for managing and discovering books. The project is built using ASP.NET Core for the backend and React with Vite for the frontend.
+This project is a full-stack application featuring backend logic and calculations.<br> It was developed within a 7-day sprint for [PresentConnection](https://presentconnection.eu/).<br> After an initial review, all issues were addressed and refined based on feedback from senior developers.
 
 - Add, edit, delete, and view books.
 - Easily find books using search filters.

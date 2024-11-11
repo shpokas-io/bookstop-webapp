@@ -47,11 +47,6 @@ coverage/
 # Public and generated assets (when applicable)
 public/assets/
 
-# Ignoring screenshots and design files
-public/dekstop.png
-public/mobile.png
-public/figmadesign.png
-
 # Ignoring unnecessary files from the build process
 src/assets/images/Design/
 
