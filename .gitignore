@@ -37,9 +37,6 @@ coverage/
 .cache-loader/
 *.gz
 
-# Tailwind output
-tailwind.config.js
-
 # ESLint and Prettier
 .eslintcache
 
